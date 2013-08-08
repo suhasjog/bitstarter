@@ -16,7 +16,7 @@ function callPvWatts() {
 	console.log("ServiceURL : " + serviceURL);
 	alert(serviceURL);
 	var xmlHttp = new XMLHttpRequest();
-	xmlHttp.open("GET", serviceURL, false );
+	xmlHttp.open("GET", serviceURL, true );
 	xmlHttp.send();
 	 
 	console.log(xmlHttp.responseText);
