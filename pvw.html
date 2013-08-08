@@ -26,6 +26,7 @@ function callPvWatts() {
 				console.log(JSON.stringify(obj.outputs));
 				document.getElementById("form2").elements['textarea'].value = JSON.stringify(obj.outputs) ;
 				alert("Output : " +  JSON.stringify(obj.outputs) );
+			}
 	}
 	xmlHttp.send();
 	 
