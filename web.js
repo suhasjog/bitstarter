@@ -5,7 +5,7 @@ app.use(express.logger());
 
 app.get('/', function(request, response) {
 	var index = fs.readFileSync('index.html')
-  response.send('Hello World2!'+ index);
+	response.send(index);
 
 
 });

@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<script>
+function callPvWatts() {
+	var formElement = document.getElementById("myForm");
+	//var serviceURL = http://developer.nrel.gov/api/georeserv/app/sam/pvwatts.json?api_key=DEMO_KEY&address=Boulder,+CO&system_size=4.0&derate=0.770&tilt=39.5&azimuth=170&timeframe=monthly;
+	var serviceURL = "http://developer.nrel.gov/api/georeserv/app/sam/pvwatts.json?api_key=DEMO_KEY";
+	serviceURL += "&lat=" + formElement.elements['lat'].value;
+	serviceURL += "&lon=" + formElement.elements['lon'].value;
+	serviceURL += "&system_size=" + formElement.elements['sysSize'].value;
+	serviceURL += "&derate=" + formElement.elements['derate'].value;
+	serviceURL += "&tilt=" + formElement.elements['tilt'].value;
+	serviceURL += "&azimuth=" + formElement.elements['azimuth'].value;
+	serviceURL += "&timeframe=" + formElement.elements['timeframe'].value;
+	console.log("ServiceURL : " + serviceURL);
+	alert(serviceURL);
+	var xmlHttp = new XMLHttpRequest();
+	xmlHttp.open("GET", serviceURL, false );
+	xmlHttp.send();
+	 
+	console.log(xmlHttp.responseText);
+	obj = JSON.parse(xmlHttp.responseText);
+	//alert(obj);
+	//docuemnt.write(obj);
+	console.log(JSON.stringify(obj.outputs));
+	//document.getElementById("form2").elements['textarea'].value = JSON.stringify(obj.outputs) ;
+	alert("Output : " +  JSON.stringify(obj.outputs) );
+
+}
+</script>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>PVWatts</title>
+</head>
+<body>
+	<FORM id = "myForm">
+		Lat: <input type="text" name="lat" id ="lat" value="21.3069"/><br />
+		Lon: <input type="text" name="lon" id ="lon" value="-157.8583"/><br />
+		PVWatts Input: SystemSize (kW):
+		<input type="text" name="sysSize" id = "sysSize" value="4.0"/><br />
+		PVWatts Input: DC/AC Derate Factor:
+		<input type="text" name="dRateFactor" id="derate" value="0.770"/><br />
+		PVWatts Input: Array Azimuth or Orientation (Degrees):
+		<input type="text" name="azimuth" id="azimuth" value="170"/><br />
+		PVWatts Input: Tilt:
+		<input type="text" name="dcRating" id="tilt" value="39.5"/><br />
+		PVWatts Input: TimeFrame:
+		<input type="text" name="timeframe" id="timeframe" value="monthly" /><br />
+		<BR/>
+		<button name="button" onclick="callPvWatts()">Click me</button>
+	</FORM>
+	<form id="form2">
+		<BR/><BR/>
+		<textarea id="textarea" name="Output" rows="10" cols="50"></textarea>
+		<BR/>
+	
+	</form>	
+</body>
+
+</html>
