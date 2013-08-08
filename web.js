@@ -4,7 +4,7 @@ var fs = require('fs');
 app.use(express.logger());
 
 app.get('/', function(request, response) {
-	var index = fs.readFileSync('index.html')
+	var index = fs.readFileSync('pvw.html')
 	response.send('hello <BR>'+ index);
 });
 
