@@ -19,17 +19,18 @@ function callPvWatts() {
 	xmlHttp.open("GET", serviceURL, true );
 	var obj = null;
 	xmlHttp.onreadystatechange = function(){
-	
-		console.log(xmlHttp.responseText);
-		obj = JSON.parse(xmlHttp.responseText);
+		if(this.readyState == 4) 
+			if(this. status == 200) { 	
+				console.log(xmlHttp.responseText);
+				obj = JSON.parse(xmlHttp.responseText);
+				console.log(JSON.stringify(obj.outputs));
+				document.getElementById("form2").elements['textarea'].value = JSON.stringify(obj.outputs) ;
+				alert("Output : " +  JSON.stringify(obj.outputs) );
 	}
 	xmlHttp.send();
 	 
-	//alert(obj);
+	alert("shouldn't be seeing this..");
 	//docuemnt.write(obj);
-	console.log(JSON.stringify(obj.outputs));
-	document.getElementById("form2").elements['textarea'].value = JSON.stringify(obj.outputs) ;
-	alert("Output : " +  JSON.stringify(obj.outputs) );
 
 }
 </script>
