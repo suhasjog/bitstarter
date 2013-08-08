@@ -17,10 +17,14 @@ function callPvWatts() {
 	alert(serviceURL);
 	var xmlHttp = new XMLHttpRequest();
 	xmlHttp.open("GET", serviceURL, true );
+	var obj = null;
+	xmlHttp.onreadystatechange = function(){
+	
+		console.log(xmlHttp.responseText);
+		obj = JSON.parse(xmlHttp.responseText);
+	}
 	xmlHttp.send();
 	 
-	console.log(xmlHttp.responseText);
-	obj = JSON.parse(xmlHttp.responseText);
 	//alert(obj);
 	//docuemnt.write(obj);
 	console.log(JSON.stringify(obj.outputs));
