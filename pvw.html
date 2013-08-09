@@ -16,11 +16,10 @@ function callPvWatts() {
 	console.log("ServiceURL : " + serviceURL);
 	alert(serviceURL);
 	var xmlHttp = new XMLHttpRequest();
-	xmlHttp.open("GET", serviceURL, true );
 	var obj = null;
 	xmlHttp.onreadystatechange = function(){
-		if(this.readyState == 4) 
-			if(this. status == 200) { 	
+		if(xmlHttp.readyState == 4) 
+			if(xmlHttp. status == 200) { 	
 				console.log(xmlHttp.responseText);
 				obj = JSON.parse(xmlHttp.responseText);
 				console.log(JSON.stringify(obj.outputs));
@@ -28,6 +27,8 @@ function callPvWatts() {
 				alert("Output : " +  JSON.stringify(obj.outputs) );
 			}
 	}
+
+	xmlHttp.open("GET", serviceURL, true );
 	xmlHttp.send();
 	 
 	alert("shouldn't be seeing this..");
